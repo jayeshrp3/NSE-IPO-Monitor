@@ -1,0 +1,22 @@
+Initial implementation validation output excerpts (2026-11-10)
+
+Command: python -m pytest validation/harness -q
+Exit status: 1
+Observed result: 2 failed, 14 passed in 32.73s.
+Failures:
+- test_duplicate_identity_is_rejected_but_distinct_keys_are_allowed:
+  duplicate response was clear but did not contain the word "duplicate".
+- test_pages_load_and_delete_cancel_sends_no_request:
+  the assertion expected a relative static URL; url_for rendered an absolute URL.
+
+Command: python -m ruff check .
+Exit status: 1
+Observed result: 19 findings. Full output is in ruff-first-run.txt.
+
+Command: python -m bandit -r app
+Exit status: 0
+Observed result: no issues identified; 732 lines scanned.
+Bandit start timestamp: 2026-11-10 10:34:24.829617+00:00.
+
+These are output excerpts from the actual initial validation run, not a rerun or
+an inferred result. The initial source archive is initial-source.zip.

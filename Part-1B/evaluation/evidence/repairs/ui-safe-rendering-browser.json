@@ -1,0 +1,24 @@
+{
+  "test_type": "local browser integration",
+  "application_url": "http://127.0.0.1:8000/",
+  "inference": "intercepted locally; no Ollama or external request",
+  "payloads": [
+    "HTML image tag with onerror handler in company name",
+    "script tag in source evidence",
+    "SVG onload markup in summary",
+    "iframe/srcdoc script markup in warning",
+    "script and prompt-injection text in announcement input"
+  ],
+  "assertions": {
+    "script_elements_created": 0,
+    "image_elements_created": 0,
+    "svg_elements_created": 0,
+    "iframe_elements_created": 0,
+    "script_executed": false,
+    "malicious_values_displayed_as_text": true,
+    "application_controls_remained_present": true,
+    "invalid_model_output_error_visible": true,
+    "invalid_result_hidden": true
+  },
+  "result": "PASS"
+}

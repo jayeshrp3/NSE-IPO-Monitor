@@ -1,0 +1,9 @@
+{
+  "case_id": "E-18",
+  "feature": "Optional manual comparison with Part 1A",
+  "disposition": "deferred",
+  "reason": "The required extraction, validation, security, and independent evaluation scope is prioritized; comparison would add scope and requires no database coupling.",
+  "case_retained": true,
+  "core_extraction_available": true,
+  "database_or_part_1a_integration": false
+}

@@ -1,0 +1,8 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #17212b; background: #f4f7fa; }
+body { margin: 0; }
+main { max-width: 860px; margin: 2rem auto; padding: 1.5rem; background: white; border-radius: 12px; }
+textarea { display: block; box-sizing: border-box; width: 100%; min-height: 12rem; margin: .5rem 0 1rem; padding: .8rem; }
+button { padding: .7rem 1rem; cursor: pointer; }
+#results > div { border-top: 1px solid #d6dde5; padding: .35rem 0; }
+#status { min-height: 1.5rem; }
+@media (max-width: 600px) { main { margin: .5rem; padding: 1rem; } }

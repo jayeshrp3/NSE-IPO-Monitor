@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IPO Announcement Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>IPO Announcement Assistant</h1>
+      <p>Analyze English IPO announcements locally with Ollama.</p>
+      <form id="analysis-form">
+        <label for="announcement">IPO announcement</label>
+        <textarea id="announcement" name="announcement" maxlength="50000" required></textarea>
+        <button type="submit">Analyze announcement</button>
+      </form>
+      <p id="status" role="status" aria-live="polite"></p>
+      <section id="results" aria-label="Analysis results" hidden></section>
+    </main>
+  </body>
+</html>

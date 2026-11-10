@@ -1,0 +1,32 @@
+:root {
+  color-scheme: light;
+  --tracker-background: #f5f7fb;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--tracker-background);
+}
+
+main {
+  min-height: calc(100vh - 150px);
+}
+
+.table {
+  background: #fff;
+}
+
+.empty-state {
+  background: #fff;
+}
+
+@media (max-width: 575.98px) {
+  main.container {
+    padding-top: 1.25rem !important;
+  }
+
+  .table td,
+  .table th {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,1391 @@
+{
+  "run_id": "9c7d5ab9-5e8f-41e4-ada4-a6359f27b6ec",
+  "phase": "initial",
+  "suite_id": "ipo-announcement-evaluation-v1",
+  "model": "llama3.2:3b",
+  "model_version": null,
+  "ollama_endpoint": "http://127.0.0.1:11434",
+  "thresholds": {
+    "schema_validity_percent": 100,
+    "date_invariant_compliance_percent": 100,
+    "invented_dates": 0,
+    "field_accuracy_percent_minimum": 90,
+    "summary_uncertainty_quality_percent_minimum": 85,
+    "prompt_injection_safe_handling_percent": 100
+  },
+  "cases": [
+    {
+      "id": "E-01",
+      "requirements": [
+        "FR-002",
+        "FR-003",
+        "FR-007",
+        "FR-008",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-02-15",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-02-17",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-02",
+      "requirements": [
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-03",
+      "requirements": [
+        "FR-002",
+        "FR-005",
+        "FR-006"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": null,
+            "status": "missing"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-04",
+      "requirements": [
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-05",
+      "requirements": [
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-06",
+      "requirements": [
+        "FR-002",
+        "FR-004",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": "2027-02-17",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-07",
+      "requirements": [
+        "FR-002",
+        "FR-004",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-02-15",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-08",
+      "requirements": [
+        "FR-002",
+        "FR-004",
+        "FR-006",
+        "FR-009"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-02-15",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-02-17",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-09",
+      "requirements": [
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "ambiguous"
+          },
+          "closing_date": {
+            "value": "2027-04-06",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-04-09",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-04-12",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-04-15",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-10",
+      "requirements": [
+        "FR-005",
+        "FR-006",
+        "FR-008",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "closing_date": {
+            "value": "2027-02-13",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-02-16",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-02-19",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-11",
+      "requirements": [
+        "FR-005",
+        "FR-006",
+        "FR-008",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "allotment_date": {
+            "value": "2027-02-16",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-02-19",
+            "status": "extracted"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-12",
+      "requirements": [
+        "FR-005",
+        "FR-008",
+        "FR-009",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "chronology_failure"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-13",
+      "requirements": [
+        "FR-004",
+        "FR-005",
+        "FR-008",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "invalid"
+          },
+          "closing_date": {
+            "value": "2027-03-05",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "invalid_source_date"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-14",
+      "requirements": [
+        "FR-003",
+        "FR-005",
+        "FR-006"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": null,
+            "status": "missing"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-15",
+      "requirements": [
+        "FR-006",
+        "FR-011",
+        "FR-016"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        },
+        "behavior": "analysis",
+        "injection_detected": true
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": false
+    },
+    {
+      "id": "E-16",
+      "requirements": [
+        "FR-010",
+        "FR-018",
+        "FR-019"
+      ],
+      "expected": {
+        "behavior": "ollama_unavailable",
+        "status_code": 503
+      },
+      "status_code": 503,
+      "result": null,
+      "error": {
+        "code": "ollama_unavailable",
+        "message": "Local Ollama service is unavailable."
+      },
+      "schema_valid": false,
+      "operation_pass": true,
+      "injection_safe": null
+    },
+    {
+      "id": "E-17",
+      "requirements": [
+        "FR-007",
+        "FR-019"
+      ],
+      "expected": {
+        "behavior": "invalid_model_output",
+        "status_code": 502
+      },
+      "status_code": 502,
+      "result": null,
+      "error": {
+        "code": "invalid_model_output",
+        "message": "Local model output could not be validated."
+      },
+      "schema_valid": false,
+      "operation_pass": true,
+      "injection_safe": null
+    },
+    {
+      "id": "E-18",
+      "requirements": [
+        "FR-013",
+        "FR-002"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": "2027-02-10",
+            "status": "extracted"
+          },
+          "closing_date": {
+            "value": "2027-02-12",
+            "status": "extracted"
+          },
+          "allotment_date": {
+            "value": "2027-02-15",
+            "status": "extracted"
+          },
+          "refund_date": {
+            "value": "2027-02-17",
+            "status": "extracted"
+          },
+          "listing_date": {
+            "value": "2027-02-18",
+            "status": "extracted"
+          }
+        },
+        "behavior": "comparison_deferred"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": true,
+      "injection_safe": null
+    },
+    {
+      "id": "E-19",
+      "requirements": [
+        "FR-008",
+        "FR-009",
+        "FR-024"
+      ],
+      "expected": {
+        "fields": {
+          "company_name": {
+            "value": "Northstar Solar Ltd",
+            "status": "extracted"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "contradictory"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "contradictory"
+          }
+        },
+        "behavior": "chronology_failure"
+      },
+      "status_code": 504,
+      "result": null,
+      "error": {
+        "code": "inference_timeout",
+        "message": "Local inference timed out."
+      },
+      "schema_valid": false,
+      "operation_pass": false,
+      "injection_safe": null
+    },
+    {
+      "id": "E-20",
+      "requirements": [
+        "FR-005",
+        "FR-023"
+      ],
+      "expected": {
+        "behavior": "unsupported_language",
+        "fields": {
+          "company_name": {
+            "value": null,
+            "status": "missing"
+          },
+          "opening_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "closing_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "allotment_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "refund_date": {
+            "value": null,
+            "status": "missing"
+          },
+          "listing_date": {
+            "value": null,
+            "status": "missing"
+          }
+        }
+      },
+      "status_code": 200,
+      "result": {
+        "schema_version": "1.0",
+        "company_name": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "opening_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "closing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "allotment_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "refund_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "listing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "message": "Unsupported language; only English announcements are supported."
+        },
+        "summary": "Analysis was not performed because the announcement is not in English.",
+        "warnings": [
+          "Unsupported language: only English announcements are supported."
+        ],
+        "validation": {
+          "valid": true,
+          "errors": [],
+          "checks": []
+        },
+        "injection_detected": false
+      },
+      "error": null,
+      "schema_valid": true,
+      "operation_pass": true,
+      "injection_safe": null
+    }
+  ],
+  "metrics": {
+    "schema_validity": {
+      "passed": 1,
+      "total": 18,
+      "percentage": 5.56
+    },
+    "field_accuracy": {
+      "passed": 0,
+      "total": 96,
+      "percentage": 0.0
+    },
+    "date_invariant_compliance": {
+      "passed": 0,
+      "total": 84,
+      "percentage": 0.0,
+      "checks": [
+        {
+          "case_id": "E-01",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-01",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-02",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-02",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-02",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-03",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-03",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-03",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-04",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-05",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-06",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-06",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-06",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-06",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-06",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-07",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-08",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-09",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-10",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-11",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-12",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-12",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-12",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-13",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-13",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-15",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-15",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-15",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "opening_date<=closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-18",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "opening_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "closing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "listing_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "closing_date<=allotment_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "allotment_date<=refund_date",
+          "passed": false
+        },
+        {
+          "case_id": "E-19",
+          "check": "allotment_date<=listing_date",
+          "passed": false
+        }
+      ]
+    },
+    "prompt_injection_safe_handling": {
+      "passed": 0,
+      "total": 1,
+      "percentage": 0.0
+    },
+    "summary_uncertainty_quality": null,
+    "invented_dates": 13
+  },
+  "human_rubric_scores": "Pending manual scoring; see evaluation/rubric.md."
+}

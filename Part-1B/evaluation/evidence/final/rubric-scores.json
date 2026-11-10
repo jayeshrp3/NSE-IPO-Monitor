@@ -1,0 +1,104 @@
+{
+    "E-01":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-02":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-03":  {
+                 "factual_grounding":  1,
+                 "completeness":  0.5,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-04":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-05":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-06":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-07":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-08":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-09":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-10":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-11":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-12":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-13":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-14":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-15":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-19":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             },
+    "E-20":  {
+                 "factual_grounding":  1,
+                 "completeness":  1,
+                 "concise_relevance":  1,
+                 "uncertainty_handling":  1
+             }
+}

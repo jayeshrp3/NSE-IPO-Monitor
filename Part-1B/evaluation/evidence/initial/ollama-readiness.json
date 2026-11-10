@@ -1,0 +1,11 @@
+{
+  "endpoint": "http://127.0.0.1:11434",
+  "local_ollama_available": false,
+  "version": null,
+  "configured_model": "llama3.2:3b",
+  "model_available": false,
+  "configuration_freeze": "blocked",
+  "reason": "The local Ollama service refused the loopback connection; no model/version metadata was available.",
+  "fallback_used": false,
+  "final_evaluation_run": false
+}

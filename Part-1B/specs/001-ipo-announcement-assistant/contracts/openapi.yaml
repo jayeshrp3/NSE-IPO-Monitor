@@ -1,0 +1,275 @@
+openapi: 3.1.0
+info:
+  title: IPO Announcement & Deadline Assistant
+  version: 1.0.0
+  description: Local-only API contract for analyzing pasted English IPO announcement text.
+servers:
+  - url: http://127.0.0.1:8000
+    description: Local application
+paths:
+  /api/v1/analyze:
+    post:
+      operationId: analyzeAnnouncement
+      summary: Extract and validate IPO details from announcement text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalysisRequest"
+      responses:
+        "200":
+          description: Validated analysis result. Invalid source dates may be represented as null fields with warnings and failed validation checks.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalysisResponse"
+        "422":
+          description: Invalid request body, blank text, or announcement_text longer than 50,000 Unicode characters.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: Local model output could not be parsed or failed strict schema validation; no extraction result is returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: Local Ollama service or configured model is unavailable; no remote fallback is attempted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "504":
+          description: Local inference timed out.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /:
+    get:
+      operationId: getLocalInterface
+      summary: Serve the local announcement analysis interface
+      responses:
+        "200":
+          description: Local browser interface.
+components:
+  schemas:
+    AnalysisRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - announcement_text
+      properties:
+        announcement_text:
+          type: string
+          minLength: 1
+          maxLength: 50000
+          pattern: "\\S"
+          description: Non-blank English announcement text up to 50,000 Unicode characters; treated only as untrusted source material. Oversized content is rejected before inference, never silently truncated.
+    AnalysisResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - schema_version
+        - company_name
+        - opening_date
+        - closing_date
+        - allotment_date
+        - refund_date
+        - listing_date
+        - summary
+        - warnings
+        - validation
+        - injection_detected
+      properties:
+        schema_version:
+          type: string
+          const: "1.0"
+        company_name:
+          $ref: "#/components/schemas/CompanyFieldResult"
+        opening_date:
+          $ref: "#/components/schemas/DateFieldResult"
+        closing_date:
+          $ref: "#/components/schemas/DateFieldResult"
+        allotment_date:
+          $ref: "#/components/schemas/DateFieldResult"
+        refund_date:
+          $ref: "#/components/schemas/DateFieldResult"
+        listing_date:
+          $ref: "#/components/schemas/DateFieldResult"
+        summary:
+          type: string
+          minLength: 1
+          description: Concise summary grounded only in the submitted announcement.
+        warnings:
+          type: array
+          description: Human-readable warnings; empty when none apply.
+          items:
+            $ref: "#/components/schemas/Warning"
+        validation:
+          $ref: "#/components/schemas/ValidationResult"
+        injection_detected:
+          type: boolean
+          description: True when suspected prompt-injection content was detected in the source.
+    CompanyFieldResult:
+      type: object
+      additionalProperties: false
+      required:
+        - value
+        - status
+        - evidence
+        - message
+      properties:
+        value:
+          oneOf:
+            - type: string
+              minLength: 1
+              pattern: "\\S"
+            - type: "null"
+          description: Company name when verified; otherwise null.
+        status:
+          type: string
+          enum: [extracted, missing, ambiguous, contradictory, invalid, uncertain]
+        evidence:
+          $ref: "#/components/schemas/SourceEvidence"
+        message:
+          $ref: "#/components/schemas/FieldMessage"
+      allOf:
+        - if:
+            properties:
+              status:
+                const: extracted
+            required: [status]
+          then:
+            properties:
+              value:
+                type: string
+                minLength: 1
+                pattern: "\\S"
+          else:
+            properties:
+              value:
+                type: "null"
+    DateFieldResult:
+      type: object
+      additionalProperties: false
+      required:
+        - value
+        - status
+        - evidence
+        - message
+      properties:
+        value:
+          oneOf:
+            - type: string
+              format: date
+              pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+            - type: "null"
+          description: Verified ISO 8601 full-date, or null unless the status is extracted.
+        status:
+          type: string
+          enum: [extracted, missing, ambiguous, contradictory, invalid, uncertain]
+        evidence:
+          $ref: "#/components/schemas/SourceEvidence"
+        message:
+          $ref: "#/components/schemas/FieldMessage"
+      allOf:
+        - if:
+            properties:
+              status:
+                const: extracted
+            required: [status]
+          then:
+            properties:
+              value:
+                type: string
+                format: date
+                pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+          else:
+            properties:
+              value:
+                type: "null"
+    SourceEvidence:
+      description: Exact short source quote supporting the field, or null when no suitable quote exists. Never model-invented.
+      oneOf:
+        - type: string
+          minLength: 1
+        - type: "null"
+    FieldMessage:
+      description: Explanation for a missing, ambiguous, conflicting, invalid, or uncertain field; null when no explanation is needed.
+      oneOf:
+        - type: string
+          minLength: 1
+        - type: "null"
+    Warning:
+      type: string
+      minLength: 1
+      description: Human-readable warning about uncertainty, validation, safety, or unsupported input.
+    ValidationResult:
+      type: object
+      additionalProperties: false
+      required:
+        - valid
+        - errors
+        - checks
+      properties:
+        valid:
+          type: boolean
+          description: True only when the returned extraction passes schema and applicable independent validation.
+        errors:
+          type: array
+          items:
+            type: string
+            minLength: 1
+        checks:
+          type: array
+          description: Results for applicable independent checks only; omitted relationships are not failures.
+          items:
+            $ref: "#/components/schemas/ValidationCheck"
+    ValidationCheck:
+      type: object
+      additionalProperties: false
+      required:
+        - check_id
+        - passed
+        - message
+      properties:
+        check_id:
+          type: string
+          enum:
+            - date_format
+            - calendar_validity
+            - source_support
+            - chronology_opening_closing
+            - chronology_closing_allotment
+            - chronology_allotment_refund
+            - chronology_allotment_listing
+        passed:
+          type: boolean
+        message:
+          oneOf:
+            - type: string
+              minLength: 1
+            - type: "null"
+    ApiError:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - invalid_request
+            - input_too_large
+            - invalid_model_output
+            - ollama_unavailable
+            - inference_timeout
+        message:
+          type: string
+          minLength: 1
+          description: Safe, actionable error; must not expose raw model output or sensitive local details.

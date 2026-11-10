@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} · IPO Deadline Tracker{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-8">
+    <h1 class="h2 mb-4">{{ page_title }}</h1>
+    <div id="form-errors" class="alert alert-danger d-none" role="alert" aria-live="assertive"></div>
+    <form id="ipo-form" data-ipo-id="{{ record.id if record else '' }}">
+      <div class="mb-3">
+        <label class="form-label" for="company_name">Company name <span aria-hidden="true">*</span></label>
+        <input class="form-control" id="company_name" name="company_name" required maxlength="200"
+          value="{{ record.company_name if record else '' }}">
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="opening_date">Opening date <span aria-hidden="true">*</span></label>
+          <input class="form-control" id="opening_date" name="opening_date" type="date" required
+            value="{{ record.opening_date if record else '' }}">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="closing_date">Closing date <span aria-hidden="true">*</span></label>
+          <input class="form-control" id="closing_date" name="closing_date" type="date" required
+            value="{{ record.closing_date if record else '' }}">
+        </div>
+      </div>
+      <fieldset class="mt-4">
+        <legend class="h5">Optional milestone dates</legend>
+        {% for field, label in [
+          ("allotment_date", "Allotment date"),
+          ("refund_date", "Refund date"),
+          ("listing_date", "Listing date")
+        ] %}
+          <div class="row align-items-end g-2 mb-3">
+            <div class="col">
+              <label class="form-label" for="{{ field }}">{{ label }}</label>
+              <input class="form-control optional-date" id="{{ field }}" name="{{ field }}" type="date"
+                value="{{ record[field] if record and record[field] else '' }}">
+            </div>
+            {% if record and record[field] %}
+              <div class="col-auto">
+                <div class="form-check">
+                  <input class="form-check-input clear-date" id="clear_{{ field }}"
+                    type="checkbox" data-field="{{ field }}">
+                  <label class="form-check-label" for="clear_{{ field }}">Clear</label>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </fieldset>
+      <p class="form-text">A supplied listing date must be at least three weekdays after closing. Weekends are excluded; public holidays are not.</p>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-primary" type="submit">Save IPO</button>
+        <a class="btn btn-outline-secondary" href="/">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

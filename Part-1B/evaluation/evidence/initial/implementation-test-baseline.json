@@ -1,0 +1,15 @@
+{
+  "test_first_baseline": {
+    "command": "python -m pytest tests",
+    "result": "expected failures before implementation",
+    "collection_errors": 8,
+    "cause": "planned app and evaluation modules had not yet been created"
+  },
+  "post_implementation": {
+    "command": "python -m pytest -q",
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "result_file": "evaluation/evidence/initial/automated-tests.xml"
+  }
+}

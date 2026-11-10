@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}IPO schedule · IPO Deadline Tracker{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div>
+    <h1 class="h2 mb-1">IPO schedule</h1>
+    <p class="text-secondary mb-0">Monitor offering dates and closing deadlines.</p>
+  </div>
+  <a class="btn btn-primary" href="/ipos/new">Add IPO</a>
+</div>
+{% if error %}
+  <div class="alert alert-danger" role="alert">{{ error }}</div>
+{% endif %}
+<form class="row g-2 align-items-end mb-3" action="/ipos" method="get">
+  <div class="col-12 col-md-4">
+    <label class="form-label" for="company_name">Company search</label>
+    <input class="form-control" id="company_name" name="company_name"
+      value="{{ company_name }}" placeholder="Search company">
+  </div>
+  <div class="col-12 col-md-3">
+    <label class="form-label" for="status">Status</label>
+    <select class="form-select" id="status" name="status">
+      <option value="">All statuses</option>
+      {% for value in ["Upcoming", "Open", "Closed", "Listed"] %}
+        <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ value }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-6 col-md-3">
+    <label class="form-label" for="sort">Sort by</label>
+    <select class="form-select" id="sort" name="sort">
+      <option value="opening_date" {% if sort == "opening_date" %}selected{% endif %}>Opening date</option>
+      <option value="closing_date" {% if sort == "closing_date" %}selected{% endif %}>Closing date</option>
+    </select>
+  </div>
+  <div class="col-6 col-md-2">
+    <label class="form-label" for="order">Order</label>
+    <select class="form-select" id="order" name="order">
+      <option value="asc" {% if order == "asc" %}selected{% endif %}>Oldest first</option>
+      <option value="desc" {% if order == "desc" %}selected{% endif %}>Newest first</option>
+    </select>
+  </div>
+  <div class="col-12 d-flex gap-2">
+    <button class="btn btn-outline-primary" type="submit">Apply filters</button>
+    <a class="btn btn-outline-secondary" href="/ipos">Clear</a>
+  </div>
+</form>
+{% if records %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">Company</th>
+          <th scope="col">Opening</th>
+          <th scope="col">Closing</th>
+          <th scope="col">Status</th>
+          <th scope="col">Deadline</th>
+          <th scope="col"><span class="visually-hidden">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for record in records %}
+        <tr>
+          <th scope="row"><a href="/ipos/{{ record.id }}">{{ record.company_name }}</a></th>
+          <td>{{ record.opening_date }}</td>
+          <td>{{ record.closing_date }}</td>
+          <td><span class="badge text-bg-secondary">{{ record.status }}</span></td>
+          <td>
+            {% if record.alert_status == "Approaching" %}
+              <span class="badge text-bg-warning">Closing in {{ record.days_remaining }} days</span>
+            {% elif record.deadline_expired %}
+              <span class="badge text-bg-secondary">Expired {{ record.expired_days }} days ago</span>
+            {% else %}
+              {{ record.days_remaining }} days remaining
+            {% endif %}
+          </td>
+          <td class="text-end">
+            <a class="btn btn-sm btn-outline-primary" href="/ipos/{{ record.id }}">View</a>
+            <a class="btn btn-sm btn-outline-secondary" href="/ipos/{{ record.id }}/edit">Edit</a>
+            <button class="btn btn-sm btn-outline-danger" type="button"
+              data-delete-url="/api/ipos/{{ record.id }}" data-delete-name="{{ record.company_name }}">
+              Delete
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="empty-state rounded border p-5 text-center">
+    <h2 class="h5">No IPO records found</h2>
+    <p class="text-secondary">Add a record or adjust the search and filters.</p>
+    <a class="btn btn-primary" href="/ipos/new">Add IPO</a>
+  </div>
+{% endif %}
+<div id="action-message" class="visually-hidden" role="status" aria-live="polite"></div>
+{% endblock %}

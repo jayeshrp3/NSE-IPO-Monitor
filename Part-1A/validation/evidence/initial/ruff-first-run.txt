@@ -1,0 +1,284 @@
+I001 [*] Import block is un-sorted or un-formatted
+ --> app\api\deps.py:3:1
+  |
+1 |   """FastAPI dependencies."""
+2 |
+3 | / from fastapi import Request
+4 | |
+5 | | from app.services.ipo_service import IPOService
+6 | | from app.db.repository import IPORepository
+  | |___________________________________________^
+help: Organize imports
+  |
+4 |
+5 + from app.db.repository import IPORepository
+6 | from app.services.ipo_service import IPOService
+  - from app.db.repository import IPORepository
+7 |
+  |
+
+F401 [*] `app.core.errors.IPOError` imported but unused
+  --> app\api\routes\ipos.py:8:29
+   |
+ 7 | from app.api.deps import get_ipo_service
+ 8 | from app.core.errors import IPOError
+   |                             ^^^^^^^^
+ 9 | from app.schemas.ipo import IPOCreate, IPOUpdate
+10 | from app.services.ipo_service import IPOService
+   |
+help: Remove unused import: `app.core.errors.IPOError`
+  |
+7 | from app.api.deps import get_ipo_service
+  - from app.core.errors import IPOError
+8 | from app.schemas.ipo import IPOCreate, IPOUpdate
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> app\core\config.py:3:1
+  |
+1 |   """Application settings loaded from environment variables."""
+2 |
+3 | / from dataclasses import dataclass
+4 | | import os
+5 | | from pathlib import Path
+  | |________________________^
+help: Organize imports
+  |
+2 |
+3 + import os
+4 | from dataclasses import dataclass
+  - import os
+5 | from pathlib import Path
+  |
+
+E501 Line too long (105 > 100)
+  --> app\db\connection.py:29:101
+   |
+27 |                 allotment_date TEXT
+28 |                     CHECK (allotment_date IS NULL OR
+29 |                            (date(allotment_date) IS NOT NULL AND date(allotment_date) = allotment_date)),
+   |                                                                                                     ^^^^^
+30 |                 refund_date TEXT
+31 |                     CHECK (refund_date IS NULL OR
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\db\repository.py:3:1
+   |
+ 1 |   """Parameterized SQLite repository for IPO records."""
+ 2 |
+ 3 | / from datetime import datetime, timezone
+ 4 | | import sqlite3
+ 5 | | from typing import Any
+ 6 | |
+ 7 | | from app.core.config import Settings
+ 8 | | from app.core.errors import DuplicateIPOError, IPOStorageError
+ 9 | | from app.db.connection import connect_database
+10 | | from app.db.models import IPORecord
+11 | | from app.utils.normalization import normalize_company_name
+   | |__________________________________________________________^
+12 |
+13 |   IPO_COLUMNS = (
+   |
+help: Organize imports
+  |
+2 |
+3 + import sqlite3
+4 | from datetime import datetime, timezone
+  - import sqlite3
+5 | from typing import Any
+  |
+
+UP017 [*] Use `datetime.UTC` alias
+  --> app\db\repository.py:36:29
+   |
+34 |     @staticmethod
+35 |     def _now() -> str:
+36 |         return datetime.now(timezone.utc).isoformat(timespec="seconds")
+   |                             ^^^^^^^^^^^^
+37 |
+38 |     def create(self, values: dict[str, Any]) -> IPORecord:
+   |
+help: Convert to `datetime.UTC` alias
+   |
+2  |
+   - from datetime import datetime, timezone
+3  + from datetime import datetime, timezone, UTC
+4  | import sqlite3
+--------------------------------------------------------------------------------
+35 |     def _now() -> str:
+   -         return datetime.now(timezone.utc).isoformat(timespec="seconds")
+36 +         return datetime.now(UTC).isoformat(timespec="seconds")
+37 |
+   |
+
+E501 Line too long (104 > 100)
+  --> app\db\repository.py:76:101
+   |
+74 |             raise
+75 |         except sqlite3.DatabaseError as exc:
+76 |             raise IPOStorageError("The IPO record could not be saved due to a database error.") from exc
+   |                                                                                                     ^^^^
+77 |
+78 |     def get(self, ipo_id: int) -> IPORecord | None:
+   |
+
+E501 Line too long (106 > 100)
+   --> app\db\repository.py:133:101
+    |
+131 |             raise
+132 |         except sqlite3.DatabaseError as exc:
+133 |             raise IPOStorageError("The IPO record could not be updated due to a database error.") from exc
+    |                                                                                                     ^^^^^^
+134 |
+135 |     def delete(self, ipo_id: int) -> bool:
+    |
+
+E501 Line too long (106 > 100)
+   --> app\db\repository.py:141:101
+    |
+139 |             return cursor.rowcount > 0
+140 |         except sqlite3.DatabaseError as exc:
+141 |             raise IPOStorageError("The IPO record could not be deleted due to a database error.") from exc
+    |                                                                                                     ^^^^^^
+142 |
+143 |     @staticmethod
+    |
+
+E501 Line too long (106 > 100)
+  --> app\services\ipo_service.py:65:101
+   |
+63 |         return results
+64 |
+65 |     def update(self, ipo_id: int, payload: dict[str, Any], fields_set: set[str]) -> dict[str, Any] | None:
+   |                                                                                                     ^^^^^^
+66 |         existing = self.repository.get(ipo_id)
+67 |         if existing is None:
+   |
+
+E501 Line too long (103 > 100)
+   --> app\services\ipo_service.py:116:101
+    |
+114 |         return parse_iso_date(value, field)
+115 |
+116 |     def _serialize(self, record: IPORecord | None, current_date: date | None = None) -> dict[str, Any]:
+    |                                                                                                     ^^^
+117 |         if record is None:
+118 |             raise IPODataError("IPO record is unavailable.")
+    |
+
+E501 Line too long (101 > 100)
+   --> app\services\ipo_service.py:130:101
+    |
+128 |             "status": derive_status(record, current_date),
+129 |             **derive_deadline_values(record, current_date),
+130 |             "alert_status": derive_alert_status(record, current_date, self.settings.alert_threshold),
+    |                                                                                                     ^
+131 |             "created_at": record.created_at,
+132 |             "updated_at": record.updated_at,
+    |
+
+E501 Line too long (102 > 100)
+  --> app\services\status_service.py:15:101
+   |
+13 |     closing_date = _stored_date(record.closing_date, "closing_date")
+14 |     listing_date = (
+15 |         _stored_date(record.listing_date, "listing_date") if record.listing_date is not None else None
+   |                                                                                                     ^^
+16 |     )
+   |
+
+B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+  --> app\web\routes.py:17:27
+   |
+15 | def ipo_list(
+16 |     request: Request,
+17 |     service: IPOService = Depends(get_ipo_service),
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^
+18 |     company_name: str | None = None,
+19 |     status: str | None = None,
+   |
+
+E501 Line too long (104 > 100)
+  --> app\web\routes.py:39:101
+   |
+37 |             "order": order,
+38 |             "error": error,
+39 |             "holiday_note": "Public holidays are not excluded from the three-working-day listing rule.",
+   |                                                                                                     ^^^^
+40 |         },
+41 |     )
+   |
+
+B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+  --> app\web\routes.py:54:67
+   |
+53 | @router.get("/ipos/{ipo_id}/edit", response_class=HTMLResponse)
+54 | def edit_ipo(request: Request, ipo_id: int, service: IPOService = Depends(get_ipo_service)):
+   |                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+55 |     record = service.get(ipo_id)
+56 |     if record is None:
+   |
+
+B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+  --> app\web\routes.py:69:27
+   |
+67 |     request: Request,
+68 |     ipo_id: int,
+69 |     service: IPOService = Depends(get_ipo_service),
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^
+70 | ) -> HTMLResponse:
+71 |     record = service.get(ipo_id)
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> validation\harness\conftest.py:3:1
+   |
+ 1 |   """Black-box fixtures that exercise a separately running application process."""
+ 2 |
+ 3 | / import os
+ 4 | | from pathlib import Path
+ 5 | | import socket
+ 6 | | import subprocess
+ 7 | | import sys
+ 8 | | import time
+ 9 | |
+10 | | import httpx
+11 | | import pytest
+12 | | from playwright.sync_api import Browser, sync_playwright
+   | |________________________________________________________^
+help: Organize imports
+   |
+3  | import os
+   - from pathlib import Path
+4  | import socket
+5  | import subprocess
+6  | import sys
+7  | import time
+8  + from pathlib import Path
+9  |
+10 | import httpx
+11 | import pytest
+12 | from playwright.sync_api import Browser, sync_playwright
+   -
+13 |
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> validation\harness\test_corrupted_data.py:3:1
+  |
+1 |   """Exercise safe behavior when persisted IPO content is corrupted."""
+2 |
+3 | / import sqlite3
+4 | |
+5 | | from datetime import date, timedelta
+  | |____________________________________^
+help: Organize imports
+  |
+3 | import sqlite3
+  -
+4 | from datetime import date, timedelta
+  |
+
+Found 19 errors.
+[*] 7 fixable with `--fix`.
